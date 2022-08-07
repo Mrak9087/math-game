@@ -1,0 +1,14 @@
+.mathLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-family: "Konstanting";
+    font-size: 3rem;
+    text-transform: uppercase;
+    text-shadow: 3px 0px 11px gold;
+    color: white;
+    line-height: 5rem;
+    padding: 0 1.5rem;
+    min-width: 15rem;
+}
