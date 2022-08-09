@@ -1,0 +1,31 @@
+.game {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gameGrid {
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 52.5rem;
+    width: 100%;
+}
+
+.grid4{
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(4,1fr);
+}
+
+.grid6{
+    grid-template-columns: repeat(6,1fr);
+    grid-template-rows: repeat(6,1fr);
+}
+
+.grid8{
+    grid-template-columns: repeat(8,1fr);
+    grid-template-rows: repeat(8,1fr);
+}

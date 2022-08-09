@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Card from "../components/Card";
+import Game from "../pages/Game";
 import Header from "../components/Header";
 
 const Layout = () => {
@@ -8,7 +9,7 @@ const Layout = () => {
         <div className='App'>
             <Header />
             <div>
-                <Card />
+                <Game />
                 <Outlet />
             </div>
         </div>

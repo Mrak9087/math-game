@@ -34,6 +34,10 @@
     transform: rotateY(-180deg);
 }
 
+.front img {
+    width: 100%;
+}
+
 .back {
     background-image: url('/public/images/back.png');
     overflow: hidden;
