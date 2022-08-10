@@ -1,28 +1,30 @@
 import React, { useState } from "react";
 
-import style from './card.module.css';
+import './card.css';
 
 interface ICard{
-    id:number;
     category:string;
     image:string;
+    index:number;
+    state:string;
+    handleClick:(index:number)=>void;
 }
 
-const Card = ({id, category, image}:ICard) => {
-    const [isFlipped, setIsFlipped] = useState(false);
+const Card = ({state,category, image, index, handleClick}:ICard) => {
+
+    const cl = state ? " active " + state : "";
 
     const clickCard = () => {
-        setIsFlipped(true);
-        setTimeout(() => {setIsFlipped(false)}, 3000)
+        handleClick(index);
     }
 
     return (
-        <div onClick={() => clickCard()} className={`${style.card} ${isFlipped ? style.flipped : ''}`}>
-            <div className={style.front}>
+        <div onClick={() => clickCard()} className={`card ${cl}`}>
+            <div className="front">
                 <img src={`images/${category}/${image}`} alt={image} />
             </div>
-            <div className={style.back}></div>
-            <div className={style.overlay}></div>
+            <div className="back"></div>
+            <div className="overlay"></div>
         </div>
     )
 }

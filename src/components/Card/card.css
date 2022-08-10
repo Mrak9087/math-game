@@ -43,11 +43,11 @@
     overflow: hidden;
 }
 
-.flipped .front{
+.active .front{
     transform: rotateY(0deg);
 }
 
-.flipped .back{
+.active .back{
     transform: rotateY(180deg);
 }
 
@@ -61,6 +61,6 @@
     background-color: rgba(255,0,0,0.5);
 }
 
-.yes .overlay{
+.correct .overlay{
     background-color: rgba(0,255,0,0.5);
 }
