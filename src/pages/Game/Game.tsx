@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import Card from '../../components/Card';
+import { RootState } from '../../store/store';
 
 import './game.css';
 type TImage = {
@@ -29,22 +31,37 @@ function shuffleArray(arr: TCardGame[]): TCardGame[] {
 
 
 const Game = () => {
+    const store = useSelector((state:RootState) => state);
     const [imageList, setImageList] = useState<TCardGame[]>([]);
     const [prev, setPrev] = useState(-1);
     const [isFlip, setIsFlip] = useState(false);
-    const getImages = async () => {
+
+    const getImages = async (category:string) => {
         const res = await axios.get<TResp[]>('./images.json');
         const data = res.data;
-        const tmp = data[0].images.slice(0, 4 ** 2 / 2);
+        const tmp = data.filter((item) => item.category === category)[0].images.slice(0, store.difficulty ** 2 / 2);
         const cards = tmp.concat(tmp);
+        const arrayImg = shuffleArray(cards.map((item)=>{
+            return {card:item,state:'active'}
+        }))
+        setImageList(arrayImg);
+        setIsFlip(true);
+        rotateCard(arrayImg);
+    };
 
-        setImageList(shuffleArray(cards.map((item)=>{
-            return {card:item,state:''}
-        })));
+    const rotateCard = (list:TCardGame[])=>{
+        setTimeout(()=>{
+            const tmp = list.map((item)=> {
+                item.state="";
+                return item;
+            });
+            setImageList(tmp);
+            setIsFlip(false);
+        }, store.difficulty * 1000)
     };
 
     useEffect(() => {
-        getImages();
+        getImages(store.category);
     }, []);
 
     function check(current:number) {
@@ -85,7 +102,7 @@ const Game = () => {
 
     return (
         <div className="game">
-            <div className={`gameGrid grid4`}>
+            <div className={`gameGrid grid${store.difficulty}`}>
                 {imageList.map((item, index) => {
                     return (
                         <Card

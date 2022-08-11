@@ -9,7 +9,6 @@ const Layout = () => {
         <div className='App'>
             <Header />
             <div>
-                <Game />
                 <Outlet />
             </div>
         </div>
