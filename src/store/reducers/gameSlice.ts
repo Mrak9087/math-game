@@ -24,4 +24,6 @@ export const gameSlice = createSlice({
     }
 })
 
+export const {setDiff, setCategory} = gameSlice.actions;
+
 export default gameSlice.reducer;
