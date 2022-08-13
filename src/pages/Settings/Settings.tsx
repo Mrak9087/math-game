@@ -1,3 +1,4 @@
+import Categories from "../../components/Categories";
 import Levels from "../../components/Levels";
 
 import style from "./settings.module.css";
@@ -17,10 +18,20 @@ const ARR_DIFF = [
     }
 ]
 
+const ARR_CATEG = [
+    {
+        name:"dragons", 
+    },
+    {
+        name:"halloween", 
+    },
+]
+
 const Settings = () => {
     return (
         <div className={style.settings}>
             <Levels arrLevels={ARR_DIFF}/>
+            <Categories arrCategories={ARR_CATEG}/>
         </div>
     )
 }

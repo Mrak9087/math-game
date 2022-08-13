@@ -16,12 +16,12 @@ const LevelItem = ({nameLevel, diffLevel}:ILevelItem) => {
 
     const activeClass = diffLevel === store.difficulty ? style.active : '';
 
-    const handlerClick = () => {
+    const handleClick = () => {
         dispatch(setDiff(diffLevel))
     }
 
     return (
-        <div className={`${style.levelItem} ${activeClass}`} onClick={handlerClick}>{nameLevel}</div>
+        <div className={`${style.levelItem} ${activeClass}`} onClick={handleClick}>{nameLevel}</div>
     )
 }
 

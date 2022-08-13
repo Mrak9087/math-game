@@ -107,7 +107,7 @@ const Game = () => {
                     return (
                         <Card
                             key={index}
-                            category="dragons"
+                            category={store.category}
                             image={item.card.image}
                             index={index}
                             handleClick={handleCardClick}

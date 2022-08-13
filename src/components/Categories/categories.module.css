@@ -1,4 +1,4 @@
-.levels {
+.categories {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,11 +10,11 @@
     margin-bottom: 2.5rem;
 }
 
-.levels h2 {
+.categories h2 {
     margin-bottom: 1.5rem;
 }
 
-.levelsWrapper {
+.categoriesWrapper {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
