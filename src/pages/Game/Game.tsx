@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../../components/Card';
+import Timer from '../../components/Timer';
 import { RootState } from '../../store/store';
 
 import './game.css';
@@ -46,18 +47,15 @@ const Game = () => {
         }))
         setImageList(arrayImg);
         setIsFlip(true);
-        rotateCard(arrayImg);
     };
 
-    const rotateCard = (list:TCardGame[])=>{
-        setTimeout(()=>{
-            const tmp = list.map((item)=> {
-                item.state="";
-                return item;
-            });
-            setImageList(tmp);
-            setIsFlip(false);
-        }, store.difficulty * 1000)
+    const rotateCard = ()=>{
+        const tmp = imageList.map((item)=> {
+            item.state="";
+            return item;
+        });
+        setImageList(tmp);
+        setIsFlip(false);
     };
 
     useEffect(() => {
@@ -102,6 +100,7 @@ const Game = () => {
 
     return (
         <div className="game">
+            <Timer secondCount={store.difficulty * 5 - 10} endFunc={rotateCard}/>
             <div className={`gameGrid grid${store.difficulty}`}>
                 {imageList.map((item, index) => {
                     return (
