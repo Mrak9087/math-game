@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../../components/Card';
 import Counter from '../../components/Counter';
+import Modal from '../../components/Modal';
 import Timer from '../../components/Timer';
 import { RootState } from '../../store/store';
 
@@ -37,8 +38,10 @@ const Game = () => {
     const [imageList, setImageList] = useState<TCardGame[]>([]);
     const [prev, setPrev] = useState(-1);
     const [isFlip, setIsFlip] = useState(false);
-    const [correctCount, setCorrectCount] = useState(0)
-    const [errorCount, setErrorCount] = useState(0)
+    const [isEnd, setIsEnd] = useState(false);
+    const [correctCount, setCorrectCount] = useState(0);
+    const [errorCount, setErrorCount] = useState(0);
+    const [isRepeat, setIsRepeat] = useState(false)
 
     const getImages = async (category:string) => {
         const res = await axios.get<TResp[]>('./images.json');
@@ -65,8 +68,22 @@ const Game = () => {
     };
 
     useEffect(() => {
+        setErrorCount(0);
+        setCorrectCount(0);
+        setPrev(-1);
         getImages(store.category);
-    }, []);
+    }, [isRepeat]);
+
+    useEffect(()=>{
+        if (correctCount === (store.difficulty ** 2 / 2)) {
+            setIsEnd(true);
+        }
+    },[correctCount])
+
+    const closeModal = ()  => {
+        setIsEnd(false);
+        setIsRepeat((s) => !s);
+    }
 
     function check(current:number) {
         setIsFlip(true);
@@ -110,7 +127,7 @@ const Game = () => {
         <div className="game">
             <div className="gameInfo">
                 <Counter count={correctCount} name='Correct' classColor='ansCor'/>
-                <Timer secondCount={store.difficulty * 5 - 10} endFunc={rotateCard}/>
+                <Timer secondCount={store.difficulty * 5 - 10} endFunc={rotateCard} isRepeat={isRepeat}/>
                 <Counter count={errorCount} name='Error' classColor='ansErr'/>
             </div>
             <div className={`gameGrid grid${store.difficulty}`}>
@@ -127,6 +144,7 @@ const Game = () => {
                     );
                 })}
             </div>
+            {isEnd ? <Modal closeModal={closeModal}/> : ''}
         </div>
     );
 };
