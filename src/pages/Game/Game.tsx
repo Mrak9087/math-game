@@ -82,6 +82,10 @@ const Game = () => {
 
     const closeModal = ()  => {
         setIsEnd(false);
+    }
+
+    const retryGame = () => {
+        closeModal()
         setIsRepeat((s) => !s);
     }
 
@@ -144,7 +148,7 @@ const Game = () => {
                     );
                 })}
             </div>
-            {isEnd ? <Modal closeModal={closeModal}/> : ''}
+            {isEnd ? <Modal closeModal={closeModal} retryGame={retryGame}/> : ''}
         </div>
     );
 };
