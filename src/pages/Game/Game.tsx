@@ -148,7 +148,13 @@ const Game = () => {
                     );
                 })}
             </div>
-            {isEnd ? <Modal closeModal={closeModal} retryGame={retryGame}/> : ''}
+            {isEnd ? <Modal 
+                        closeModal={closeModal} 
+                        retryGame={retryGame} 
+                        countCorrect={correctCount}
+                        countError={errorCount}
+                        /> 
+                    : ''}
         </div>
     );
 };
