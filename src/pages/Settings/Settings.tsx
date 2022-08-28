@@ -1,39 +1,41 @@
-import Categories from "../../components/Categories";
-import Levels from "../../components/Levels";
+import Categories from '../../components/Categories';
+import Levels from '../../components/Levels';
+import PlayingForTime from '../../components/PlayingForTime';
 
-import style from "./settings.module.css";
+import style from './settings.module.css';
 
 const ARR_DIFF = [
-    {
-        name:"low", 
-        diff:4
-    },
-    {
-        name:"normal", 
-        diff:6
-    },
-    {
-        name:"hard", 
-        diff:8
-    }
-]
+  {
+    name: 'low',
+    diff: 4,
+  },
+  {
+    name: 'normal',
+    diff: 6,
+  },
+  {
+    name: 'hard',
+    diff: 8,
+  },
+];
 
 const ARR_CATEG = [
-    {
-        name:"dragons", 
-    },
-    {
-        name:"halloween", 
-    },
-]
+  {
+    name: 'dragons',
+  },
+  {
+    name: 'halloween',
+  },
+];
 
 const Settings = () => {
-    return (
-        <div className={style.settings}>
-            <Levels arrLevels={ARR_DIFF}/>
-            <Categories arrCategories={ARR_CATEG}/>
-        </div>
-    )
-}
+  return (
+    <div className={style.settings}>
+      <Levels arrLevels={ARR_DIFF} />
+      <Categories arrCategories={ARR_CATEG} />
+      <PlayingForTime></PlayingForTime>
+    </div>
+  );
+};
 
 export default Settings;

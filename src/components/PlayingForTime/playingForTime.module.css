@@ -1,0 +1,44 @@
+.forTime {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  font-family: 'Headhunter';
+  text-shadow: 3px 0px 11px gold;
+  color: white;
+  margin-bottom: 2.5rem;
+}
+
+.forTime h2 {
+  margin-bottom: 1.5rem;
+}
+
+.checkTime {
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid #292828;
+  border-radius: 1rem;
+  background-color: #473d3d;
+  cursor: pointer;
+}
+
+.active {
+  border: 3px solid #7dff03;
+  background-color: #7dff03;
+  box-shadow: 3px 0px 11px #7dff03, -3px 0px 11px #7dff03;
+  position: relative;
+}
+
+.active::after {
+  content: '✔';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

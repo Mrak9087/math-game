@@ -85,6 +85,7 @@ const Game = memo(() => {
     setErrorCount(0);
     setCorrectCount(0);
     setPrev(-1);
+    
     getImages(store.category);
   }, [isRepeat]);
 
@@ -99,6 +100,7 @@ const Game = memo(() => {
   };
 
   const retryGame = () => {
+    setArrLoadImg(arrLoadImg.map(()=> false));
     closeModal();
     setIsRepeat((s) => !s);
   };
