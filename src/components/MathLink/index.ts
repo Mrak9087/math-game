@@ -1,3 +1,3 @@
-import MathLink from "./MathLink";
+import MathLink from './MathLink';
 
 export default MathLink;

@@ -36,11 +36,14 @@ const Game = memo(() => {
 
   const countCard = store.difficulty ** 2;
 
+  const [timeGame, setTimeGame] = useState(0);
+
   const [imageList, setImageList] = useState<TCardGame[]>([]);
   const [arrLoadImg, setArrLoadImg] = useState(new Array(countCard).fill(false));
   const [prev, setPrev] = useState(-1);
   const [isFlip, setIsFlip] = useState(false);
   const [isEnd, setIsEnd] = useState(false);
+  const [isEndTime, setIsEndTime] = useState(false);
   const [correctCount, setCorrectCount] = useState(0);
   const [errorCount, setErrorCount] = useState(0);
   const [isRepeat, setIsRepeat] = useState(false);
@@ -79,18 +82,42 @@ const Game = memo(() => {
     });
     setImageList(tmp);
     setIsFlip(false);
+    setIsEndTime(true);
+  };
+
+  const checkTimeGame = () => {
+    switch (store.difficulty) {
+      case 4: {
+        setTimeGame(60);
+        return;
+      }
+      case 6: {
+        setTimeGame(180);
+        return;
+      }
+      case 8: {
+        setTimeGame(300);
+        return;
+      }
+    }
   };
 
   useEffect(() => {
     setErrorCount(0);
     setCorrectCount(0);
     setPrev(-1);
-    
+    if (store.playingForTime) {
+      checkTimeGame();
+    } else {
+      setTimeGame(0);
+    }
     getImages(store.category);
+    setIsEndTime(false);
   }, [isRepeat]);
 
   useEffect(() => {
     if (correctCount === countCard / 2) {
+      setTimeGame(0);
       setIsEnd(true);
     }
   }, [correctCount]);
@@ -100,7 +127,7 @@ const Game = memo(() => {
   };
 
   const retryGame = () => {
-    setArrLoadImg(arrLoadImg.map(()=> false));
+    setArrLoadImg(arrLoadImg.map(() => false));
     closeModal();
     setIsRepeat((s) => !s);
   };
@@ -140,17 +167,31 @@ const Game = memo(() => {
     }
   };
 
+  const endTimeGame = () => {
+    const tmp = imageList.map((item) => {
+      item.state = 'active';
+      return item;
+    });
+    setImageList(tmp);
+    setIsFlip(true);
+    setIsEnd(true);
+  };
+
   return (
     <div className="game">
       <div className="gameInfo">
         {isLoading ? (
           <>
             <Counter count={correctCount} name="Correct" classColor="ansCor" />
-            <Timer
-              secondCount={store.difficulty * 5 - 10}
-              endFunc={rotateCard}
-              isRepeat={isRepeat}
-            />
+            {store.playingForTime && isEndTime ? (
+              <Timer secondCount={timeGame} endFunc={endTimeGame} isRepeat={isRepeat} />
+            ) : (
+              <Timer
+                secondCount={store.difficulty * 5 - 10}
+                endFunc={rotateCard}
+                isRepeat={isRepeat}
+              />
+            )}
             <Counter count={errorCount} name="Error" classColor="ansErr" />
           </>
         ) : (

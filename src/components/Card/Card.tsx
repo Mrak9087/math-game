@@ -8,7 +8,7 @@ interface ICard {
   index: number;
   state: string;
   handleClick: (index: number) => void;
-  handleLoad:(index:number)=>void;
+  handleLoad: (index: number) => void;
 }
 
 const Card = ({ state, category, image, index, handleClick, handleLoad }: ICard) => {
@@ -19,7 +19,7 @@ const Card = ({ state, category, image, index, handleClick, handleLoad }: ICard)
   };
 
   const imageLoad = () => {
-    handleLoad(index)
+    handleLoad(index);
   };
 
   return (

@@ -1,3 +1,3 @@
-import Levels from "./Levels";
+import Levels from './Levels';
 
 export default Levels;

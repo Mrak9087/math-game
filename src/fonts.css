@@ -1,20 +1,20 @@
-@font-face{
-    font-family: "Headhunter";
-    src: url("./assets/fonts/Headhunter.otf");
-    font-weight: normal;
-	font-style: normal;
+@font-face {
+  font-family: 'Headhunter';
+  src: url('./assets/fonts/Headhunter.otf');
+  font-weight: normal;
+  font-style: normal;
 }
 
-@font-face{
-    font-family: "Konstanting";
-    src: url("./assets/fonts/Konstanting.ttf");
-    font-weight: normal;
-	font-style: normal;
+@font-face {
+  font-family: 'Konstanting';
+  src: url('./assets/fonts/Konstanting.ttf');
+  font-weight: normal;
+  font-style: normal;
 }
 
-@font-face{
-    font-family: "GismondaCYR";
-    src: url("./assets/fonts/GismondaCYR.otf");
-    font-weight: normal;
-	font-style: normal;
+@font-face {
+  font-family: 'GismondaCYR';
+  src: url('./assets/fonts/GismondaCYR.otf');
+  font-weight: normal;
+  font-style: normal;
 }

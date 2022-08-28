@@ -10,7 +10,6 @@ interface ITimer {
 
 const Timer = ({ secondCount, endFunc, isRepeat }: ITimer) => {
   const [seconds, setSeconds] = useState(secondCount);
-
   useEffect(() => {
     let timer: NodeJS.Timeout | undefined = undefined;
     if (seconds > 0) {
@@ -29,7 +28,7 @@ const Timer = ({ secondCount, endFunc, isRepeat }: ITimer) => {
 
   useEffect(() => {
     setSeconds(secondCount);
-  }, [isRepeat]);
+  }, [isRepeat, secondCount]);
 
   return (
     <div className={style.timer}>

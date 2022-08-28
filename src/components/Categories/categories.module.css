@@ -1,23 +1,23 @@
 .categories {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    font-family: "Headhunter"; 
-    text-shadow: 3px 0px 11px gold;
-    color: white;
-    margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  font-family: 'Headhunter';
+  text-shadow: 3px 0px 11px gold;
+  color: white;
+  margin-bottom: 2.5rem;
 }
 
 .categories h2 {
-    margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .categoriesWrapper {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    max-width: 40rem;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 40rem;
+  width: 100%;
 }

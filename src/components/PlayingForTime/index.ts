@@ -1,3 +1,3 @@
-import PlayingForTime from "./PlayingForTime";
+import PlayingForTime from './PlayingForTime';
 
 export default PlayingForTime;
