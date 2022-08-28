@@ -25,3 +25,7 @@ code {
 .active {
   background-color: #2a2222;
 }
+
+.logoLink {
+  display: block;
+}

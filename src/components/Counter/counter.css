@@ -1,11 +1,15 @@
 .counter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   font-family: 'Konstanting';
   border-radius: 1.5rem;
   box-shadow: 0px 5px 10px 2px rgba(255, 215, 0, 1);
   padding: 0.5rem 3.5rem;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
   margin-bottom: 2rem;
-  max-width: 200px;
+  max-width: 20rem;
   width: 100%;
   text-transform: uppercase;
 }
@@ -20,4 +24,11 @@
   font-size: 1.8rem;
   font-weight: bold;
   text-align: center;
+}
+
+@media screen and (max-width: 425px) {
+  .counter {
+    min-width: 9rem;
+    padding: 0.5rem;
+  }
 }

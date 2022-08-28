@@ -1,0 +1,30 @@
+.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  text-shadow: 3px 0px 11px gold;
+  color: white;
+  padding: 0 1.5rem;
+}
+
+.mainWrapper {
+  max-width: 52rem;
+  width: 100%;
+}
+
+.mainWrapper h2 {
+  font-family: 'Headhunter';
+  font-size: 2.4rem;
+  margin-bottom: 2.5rem;
+}
+
+.descriptionGame {
+  font-family: 'GismondaCYR';
+  line-height: 3rem;
+  font-size: 2.4rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+}

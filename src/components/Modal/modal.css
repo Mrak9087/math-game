@@ -63,3 +63,9 @@
 .btnModal:hover {
   transform: scale(1.08);
 }
+
+@media screen and (max-width: 320px) {
+  .btnModal {
+    width: 13rem;
+  }
+}

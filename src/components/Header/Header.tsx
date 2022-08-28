@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Container from '../Container';
 import Logo from '../Logo';
 import MathLink from '../MathLink';
@@ -10,7 +11,9 @@ const Header = () => {
     <header className={style.header}>
       <Container>
         <div className={style.headerWrapper}>
-          <Logo />
+          <Link to="/" className="logoLink">
+            <Logo />
+          </Link>
           <MathLink path="/game" text="game" />
           <MathLink path="/settings" text="Settings" />
         </div>

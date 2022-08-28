@@ -12,3 +12,18 @@
   padding: 0 1.5rem;
   min-width: 15rem;
 }
+
+
+@media screen and (max-width: 425px) {
+  .mathLink {
+    font-size: 2rem;
+    min-width: 11rem;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .mathLink {
+    font-size: 1.8rem;
+    min-width: 8rem;
+  }
+}
