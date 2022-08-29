@@ -6,11 +6,12 @@ import './modal.css';
 interface IModal {
   countCorrect: number;
   countError: number;
+  isActive: boolean;
   closeModal: () => void;
   retryGame: () => void;
 }
 
-const Modal = ({ closeModal, retryGame, countCorrect, countError }: IModal) => {
+const Modal = ({ closeModal, retryGame, isActive, countCorrect, countError }: IModal) => {
   const portal: HTMLElement = document.getElementById('portal') as HTMLElement;
 
   const handleClick = (e: React.MouseEvent) => {
@@ -18,7 +19,7 @@ const Modal = ({ closeModal, retryGame, countCorrect, countError }: IModal) => {
   };
 
   return ReactDOM.createPortal(
-    <div className="modal" onClick={closeModal}>
+    <div className={isActive ? 'modal showModal' : 'modal'} onClick={closeModal}>
       <div className="modalInfo" onClick={handleClick}>
         <div className="statHeader">Statistic game</div>
         <div className="statistic">

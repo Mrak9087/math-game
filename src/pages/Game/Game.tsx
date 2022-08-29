@@ -213,16 +213,14 @@ const Game = memo(() => {
           );
         })}
       </div>
-      {isEnd ? (
-        <Modal
-          closeModal={closeModal}
-          retryGame={retryGame}
-          countCorrect={correctCount}
-          countError={errorCount}
-        />
-      ) : (
-        ''
-      )}
+
+      <Modal
+        isActive={isEnd}
+        closeModal={closeModal}
+        retryGame={retryGame}
+        countCorrect={correctCount}
+        countError={errorCount}
+      />
     </div>
   );
 });
