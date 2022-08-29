@@ -48,7 +48,7 @@ const Game = memo(() => {
   const [errorCount, setErrorCount] = useState(0);
   const [isRepeat, setIsRepeat] = useState(false);
 
-  const isLoading: boolean = useMemo(() => {
+  const isLoadImg: boolean = useMemo(() => {
     const result = arrLoadImg.filter((item) => {
       if (item) return item;
     }).length;
@@ -169,7 +169,10 @@ const Game = memo(() => {
 
   const endTimeGame = () => {
     const tmp = imageList.map((item) => {
-      item.state = 'active';
+      if (!item.state) {
+        item.state = 'active error';
+      }
+      
       return item;
     });
     setImageList(tmp);
@@ -180,7 +183,7 @@ const Game = memo(() => {
   return (
     <div className="game">
       <div className="gameInfo">
-        {isLoading ? (
+        {isLoadImg ? (
           <>
             <Counter count={correctCount} name="Correct" classColor="ansCor" />
             {store.playingForTime && isEndTime ? (
