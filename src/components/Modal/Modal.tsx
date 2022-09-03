@@ -20,31 +20,33 @@ const Modal = ({ closeModal, retryGame, isActive, countCorrect, countError }: IM
 
   return ReactDOM.createPortal(
     <div className={isActive ? 'modal showModal' : 'modal'} onClick={closeModal}>
-      <div className="modalInfo" onClick={handleClick}>
-        <div className="statHeader">Statistic game</div>
-        <div className="statistic">
-          <div className="counterModal">Count correct: {countCorrect}</div>
-          <div className="counterModal">Count error: {countError}</div>
+      {isActive && (
+        <div className="modalInfo" onClick={handleClick}>
+          <div className="statHeader">Statistic game</div>
+          <div className="statistic">
+            <div className="counterModal">Count correct: {countCorrect}</div>
+            <div className="counterModal">Count error: {countError}</div>
+          </div>
+          <div className="modalBtns">
+            <button
+              className="btnModal"
+              onClick={() => {
+                closeModal();
+              }}
+            >
+              Close
+            </button>
+            <button
+              className="btnModal"
+              onClick={() => {
+                retryGame();
+              }}
+            >
+              Retry
+            </button>
+          </div>
         </div>
-        <div className="modalBtns">
-          <button
-            className="btnModal"
-            onClick={() => {
-              closeModal();
-            }}
-          >
-            Close
-          </button>
-          <button
-            className="btnModal"
-            onClick={() => {
-              retryGame();
-            }}
-          >
-            Retry
-          </button>
-        </div>
-      </div>
+      )}
     </div>,
     portal
   );
