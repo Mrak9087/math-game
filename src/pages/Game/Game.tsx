@@ -3,6 +3,7 @@ import React, { memo, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Card from '../../components/Card';
 import Counter from '../../components/Counter';
+import Loader from '../../components/Loader';
 import Modal from '../../components/Modal';
 import Timer from '../../components/Timer';
 import { RootState } from '../../store/store';
@@ -33,6 +34,7 @@ function shuffleArray(arr: TImage[]): TImage[] {
 
 const Game = memo(() => {
   const store = useSelector((state: RootState) => state);
+  const [isLoading, setIsLoading] = useState(false);
 
   const countCard = store.difficulty ** 2;
 
@@ -61,6 +63,7 @@ const Game = memo(() => {
   };
 
   const getImages = async (category: string) => {
+    setIsLoading(true);
     const res = await axios.get<TResp[]>('./images.json');
     const data = res.data;
     const tmp = data.filter((item) => item.category === category)[0].images;
@@ -73,6 +76,7 @@ const Game = memo(() => {
     });
     setImageList(gameCards);
     setIsFlip(true);
+    setIsLoading(false);
   };
 
   const rotateCard = () => {
@@ -172,7 +176,7 @@ const Game = memo(() => {
       if (!item.state) {
         item.state = 'active error';
       }
-      
+
       return item;
     });
     setImageList(tmp);
@@ -182,48 +186,54 @@ const Game = memo(() => {
 
   return (
     <div className="game">
-      <div className="gameInfo">
-        {isLoadImg ? (
-          <>
-            <Counter count={correctCount} name="Correct" classColor="ansCor" />
-            {store.playingForTime && isEndTime ? (
-              <Timer secondCount={timeGame} endFunc={endTimeGame} isRepeat={isRepeat} />
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="gameInfo">
+            {isLoadImg ? (
+              <>
+                <Counter count={correctCount} name="Correct" classColor="ansCor" />
+                {store.playingForTime && isEndTime ? (
+                  <Timer secondCount={timeGame} endFunc={endTimeGame} isRepeat={isRepeat} />
+                ) : (
+                  <Timer
+                    secondCount={store.difficulty * 5 - 10}
+                    endFunc={rotateCard}
+                    isRepeat={isRepeat}
+                  />
+                )}
+                <Counter count={errorCount} name="Error" classColor="ansErr" />
+              </>
             ) : (
-              <Timer
-                secondCount={store.difficulty * 5 - 10}
-                endFunc={rotateCard}
-                isRepeat={isRepeat}
-              />
+              ''
             )}
-            <Counter count={errorCount} name="Error" classColor="ansErr" />
-          </>
-        ) : (
-          ''
-        )}
-      </div>
-      <div className={`gameGrid grid${store.difficulty}`}>
-        {imageList.map((item, index) => {
-          return (
-            <Card
-              key={index}
-              category={store.category}
-              image={item.card.image}
-              index={index}
-              handleClick={handleCardClick}
-              handleLoad={loadImage}
-              state={item.state}
-            />
-          );
-        })}
-      </div>
+          </div>
+          <div className={`gameGrid grid${store.difficulty}`}>
+            {imageList.map((item, index) => {
+              return (
+                <Card
+                  key={index}
+                  category={store.category}
+                  image={item.card.image}
+                  index={index}
+                  handleClick={handleCardClick}
+                  handleLoad={loadImage}
+                  state={item.state}
+                />
+              );
+            })}
+          </div>
 
-      <Modal
-        isActive={isEnd}
-        closeModal={closeModal}
-        retryGame={retryGame}
-        countCorrect={correctCount}
-        countError={errorCount}
-      />
+          <Modal
+            isActive={isEnd}
+            closeModal={closeModal}
+            retryGame={retryGame}
+            countCorrect={correctCount}
+            countError={errorCount}
+          />
+        </>
+      )}
     </div>
   );
 });
