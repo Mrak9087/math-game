@@ -51,10 +51,8 @@ const Game = memo(() => {
   const [isRepeat, setIsRepeat] = useState(false);
 
   const isLoadImg: boolean = useMemo(() => {
-    const result = arrLoadImg.filter((item) => {
-      if (item) return item;
-    }).length;
-    return Boolean(result);
+    const result = arrLoadImg.every(item => item);
+    return result;
   }, [arrLoadImg]);
 
   const loadImage = (index: number) => {
