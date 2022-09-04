@@ -19,13 +19,13 @@ const Card = ({ state, category, image, index, handleClick, handleLoad }: ICard)
   };
 
   const imageLoad = () => {
-    handleLoad(index);
+      handleLoad(index);
   };
 
   return (
     <div onClick={() => clickCard()} className={`card ${cl}`}>
       <div className="front">
-        <img src={`images/${category}/${image}`} alt={image} onLoad={imageLoad} />
+        <img src={`images/${category}/${image}`} alt={image} onLoad={() => imageLoad()} />
       </div>
       <div className="back"></div>
       <div className="overlay"></div>
